@@ -1,12 +1,16 @@
 package montanholi.renato.cardapio.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import montanholi.renato.cardapio.models.ParametrosGet;
 import montanholi.renato.cardapio.models.Produto;
 import montanholi.renato.cardapio.repository.RepositoryProduto;
 
@@ -20,6 +24,12 @@ public class ControllerProduto {
 	public List<Produto> index() {
 		List<Produto> groupList = produtoRep.findAll();
 		return groupList;
+	}
+	
+	@GetMapping("/produtos/{id}")
+	public Optional<Produto> findByid(@PathVariable("id") Long id) {
+		Optional<Produto> produto = produtoRep.findById(id);
+		return produto;
 	}
 	
 	@RequestMapping(value = "/produtos", method = RequestMethod.POST)
