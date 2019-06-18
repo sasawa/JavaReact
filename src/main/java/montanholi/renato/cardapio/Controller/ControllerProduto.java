@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import montanholi.renato.cardapio.models.ParametrosGet;
 import montanholi.renato.cardapio.models.Produto;
 import montanholi.renato.cardapio.repository.RepositoryProduto;
 
@@ -42,7 +41,7 @@ public class ControllerProduto {
 	}
 	
 	@RequestMapping(value = "/produtos", method = RequestMethod.PUT)
-	public Produto alterar(Produto produto) {
+	public Produto alterar(Produto produto) throws Exception {
 		if(produto.getId() == null) {
 			new Exception("PRECISA TER ID RAPÁ");
 		}
@@ -51,7 +50,7 @@ public class ControllerProduto {
 	}
 	
 	@RequestMapping(value = "/produtos", method = RequestMethod.DELETE)
-	public Produto deletar(Produto produto) {
+	public Produto deletar(Produto produto) throws Exception {
 		if(produto.getId() == null) {
 			new Exception("PRECISA TER ID RAPÁ");
 		}
